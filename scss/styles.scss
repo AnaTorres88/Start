@@ -1,0 +1,21 @@
+$mint:#A9EEC2;
+$chocolate: #3E000E;
+$orange:#FF7640;
+
+.main-header{
+    background-color:$mint;
+}
+.main-header__main-nav{
+    padding:8px;
+}
+.main-header__nav-list{
+    display:flex;
+}
+.main-header__link{
+    color:$chocolate;
+}
+.main-header__link{
+    &:hover{
+        color:$orange;
+    }
+}
