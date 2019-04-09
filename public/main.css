@@ -1,0 +1,23 @@
+.main-header {
+  background-color: #A9EEC2;
+}
+
+.main-header__main-nav {
+  padding: 8px;
+}
+
+.main-header__nav-list {
+  display: flex;
+}
+
+.main-header__link {
+  color: #3E000E;
+}
+
+.main-header__link:hover {
+  color: #FF7640;
+}
+
+.red {
+  background: red;
+}

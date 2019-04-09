@@ -25,11 +25,24 @@ import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
+import sassMiddleware from 'node-sass-middleware';
 
- const port = 3000;
- const app=express();
- const compiler=webpack(config);
- 
+const port = 3000;
+const app=express();
+const compiler = webpack(config);
+
+ app.use(sassMiddleware({
+    src: path.join(__dirname, '../scss'),
+    dest: path.join(__dirname,'../public'),
+    debug:true,
+    indentedSyntax:false,
+    outputStyle: 'expanded',
+    prefix:  '/public'
+
+}));
+
+app.use(express.static("./"));
+
  app.use(require('webpack-dev-middleware')(compiler,
     {noInfo:true, publicPath:config.output.publicPath}));
 

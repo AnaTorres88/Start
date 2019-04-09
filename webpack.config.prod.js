@@ -1,9 +1,9 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
-    devtool:'inline-source-map',
+    devtool:'source-map',
     resolve: {
         extensions: ['*', '.js', '.jsx', '.json']
       },
@@ -12,7 +12,7 @@ export default {
       ],
     target:'web',
     output:{
-        path: path.resolve(__dirname, 'src'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -20,14 +20,16 @@ export default {
         new HtmlWebpackPlugin({
             template:'src/index.html',
             inject:true
-        })
+        }),
+        new ExtractTextPlugin('[name].[contenthash].css')
+
     ],
     module: {
         rules: [
             {test: /\.js$/, exclude: /node_modules/, use: {
 				loader: 'babel-loader',
 			}},
-            {test: /\.css$/, loaders: ['style-loader','css-loader', 'sass-loader']}
+            {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
         ]
     }
 }
